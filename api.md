@@ -1,11 +1,14 @@
 # API
 
 ## JSON Response Format
+
+```
 {
 	status:
 	msg:
 	result: Described Below
 }
+```
 
 ## Login Page
 
@@ -120,6 +123,7 @@ response:
 		childMatch2Id:
 	}]
 }
+```
 
 ### Get the Schedule of a Contest
 
