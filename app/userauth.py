@@ -1,5 +1,12 @@
 from model.user import User
 from mongoengine.errors import NotUniqueError
+from flask.ext.login import *
+from flask.ext.login import login_user
+from app import login_manager
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.objects(id = user_id)[0]
 
 def register(userinfo):
 	nuser = User(email = userinfo['email'], pwd = userinfo['pwd'])
@@ -11,6 +18,7 @@ def register(userinfo):
 
 def login(userinfo):
 	result = User.objects(email = userinfo['email'], pwd = userinfo['pwd'])
+	login_user(result[0])
 	if len(result) > 0:
 		return True
 	else:
