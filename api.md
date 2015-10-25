@@ -1,5 +1,17 @@
 # API
 
+## JSON Response Format
+{
+	status:
+	msg:
+	result: Described Below
+}
+
+## Login Page
+
+url: `/login`
+method: `GET`
+
 ## Login
 
 url: `/login`
@@ -8,17 +20,8 @@ data:
 
 ```
 {
-email: String,
-password: String
-}
-```
-
-return:
-
-```
-{
-	status: String('success' or 'fail'),
-	errorMessage: ''
+	email: String,
+	password: String
 }
 ```
 
@@ -26,15 +29,6 @@ return:
 
 url: `/logout`
 method: `POST`
-
-return:
-
-```
-{
-	status: String('success' or 'fail'),
-	errorMessage: ''
-}
-```
 
 ## Signup
 
@@ -44,17 +38,155 @@ data:
 
 ```
 {
-email: String,
-password: String
+	firstName: String,
+	lastName: String
+	email: String,
+	password: String
 }
 ```
 
-return:
+## Get List of Contests
+
+url: `/publicContestList`
+method: `GET`
+response:
+
+```
+[{
+	id:
+	title: String,
+	type: String,
+	totalPlayers: Num,
+	currentPlayers: Num,
+	description: String,
+	progress: String,
+	game: String
+}]
+```
+
+## Get the List of Players of a Contest
+
+url: `/playerList?id=contestid`
+method: `GET`
+response:
+
+```
+[{
+	userId:
+}]
+```
+
+### Get the Profile of a Player
+
+url: `/user?id=userid`
+method: `GET`
+response:
 
 ```
 {
-	status: String('success' or 'fail'),
-	errorMessage: ''
+	firstName: String,
+	lastName: String
+	email: String,
+	userType:
+	avatar: String,
 }
 ```
 
+### Get the Info of a Contest
+
+url: `/contest?id=contestid`
+method: `GET`
+
+### Get the Graph of a Contest
+
+url: `/graph?id=contestid`
+method: `GET`
+response:
+
+```
+{
+	type: String,
+	content: {
+		playerId:
+		win: Num,
+		lose: Num,
+		draw: Num,
+		winPoints: Num,
+		losePoints: Num,
+		totalPoints: Num
+	} | [{
+		matchId:
+		childMatch1Id:
+		childMatch2Id:
+	}]
+}
+
+### Get the Schedule of a Contest
+
+url: `/matchList?id=contestid`
+method: `GET`
+response:
+
+```
+[{
+	matchId:
+	player1Id:
+	player2Id:
+	score1: Num,
+	score2: Num
+}]
+```
+
+### Get the Information of a Match
+
+url: `/match?id=matchid`
+method: `GET`
+
+### Create a New Contest
+
+url: `/contest`
+method: `POST`
+data:
+
+```
+{
+	title: String,
+	type: String,
+	totalPlayers: Num,
+	description: String,
+	game: String
+}
+```
+
+response:
+
+```
+{
+	id:
+}
+```
+
+### Register for a Contest
+
+url: `/contest/<contestid>`
+method: `PUT`
+data:
+
+```
+{
+	userid:
+}
+```
+
+### Upload a Match Result
+
+url: `/match/<matchid>`
+method: `PUT`
+data:
+
+```
+{
+	score1: Num,
+	score2: Num
+}
+```

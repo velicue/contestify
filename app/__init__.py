@@ -31,17 +31,20 @@ app.config["SECRET_KEY"] = "TOUMEININGEN"
 
 login_manager = LoginManager()
 login_manager.init_app(app)
-login_manager.login_view = "login"
+login_manager.login_view = "login_get"
 
 import userauth
 
-class Main(flask.views.MethodView):
-	def get(self):
-		return flask.render_template('index.html')
-	
-app.add_url_rule('/',view_func=Main.as_view('main'), methods=["GET"])
+@app.route("/",methods=["GET"])
+@login_required
+def protected():
+    return flask.Response(response="Hello Protected World!" + current_user.email, status=200)
 
-@app.route('/api/user/register', methods=['POST'])
+@app.route("/login",methods=["GET"])
+def login_get():
+	return flask.render_template('login.html')
+
+@app.route('/register', methods=['POST'])
 def register():
 	content = flask.request.json
 	t = userauth.register(content)
@@ -50,8 +53,8 @@ def register():
 	else:
 		return flask.jsonify({'status': 'fail'})
 
-@app.route('/api/user/login', methods=['POST'])
-def login():
+@app.route('/login', methods=['POST'])
+def login_post():
 	content = flask.request.json
 	t = userauth.login(content)
 	print t
@@ -67,10 +70,7 @@ def static_proxy(path):
 	print path
 	return app.send_static_file(path)
 
-@app.route("/protected",methods=["GET"])
-@login_required
-def protected():
-    return flask.Response(response="Hello Protected World!" + current_user.email, status=200)
+
 
 
 
