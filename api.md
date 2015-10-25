@@ -1,11 +1,14 @@
 # API
 
 ## JSON Response Format
+
+```
 {
 	status:
 	msg:
 	result: Described Below
 }
+```
 
 ## Login Page
 
