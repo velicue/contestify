@@ -18,8 +18,9 @@ def register(userinfo):
 
 def login(userinfo):
 	result = User.objects(email = userinfo['email'], pwd = userinfo['pwd'])
-	login_user(result[0])
+	
 	if len(result) > 0:
+		login_user(result[0])
 		return True
 	else:
 		return False
