@@ -34,7 +34,7 @@ return:
 	status: String('success' or 'fail'),
 	errorMessage: ''
 }
-``
+```
 
 ## Signup
 
