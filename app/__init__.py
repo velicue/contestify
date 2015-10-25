@@ -9,10 +9,19 @@ from flask.ext.login import current_user
 
 app = flask.Flask(__name__)
 
+'''
 app.config['MONGODB_SETTINGS'] = {
     'db': 'gamemasterdb',
     'host': 'localhost',
     'port': 27017
+}
+'''
+app.config['MONGODB_SETTINGS'] = {
+    'db': 'heroku_4n7dw5c8',
+    'host': 'ds045464.mongolab.com',
+    'port': 45464,
+    'username': 'velicue',
+    'password': 'KsMs13Mc'
 }
 
 db = MongoEngine()
