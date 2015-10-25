@@ -45,7 +45,6 @@ app.add_url_rule('/',view_func=Main.as_view('main'), methods=["GET"])
 def register():
 	content = flask.request.json
 	t = userauth.register(content)
-	print t
 	if t:
 		return flask.jsonify({'status': 'success'})
 	else:
