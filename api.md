@@ -4,9 +4,17 @@
 
 ```
 {
-	status:
-	msg:
-	result: Described Below
+	"status":
+	"msg":
+	"result": Described Below
+}
+```
+
+## Id format
+
+```
+{
+	"$oid": String
 }
 ```
 
@@ -23,8 +31,8 @@ data:
 
 ```
 {
-	email: String,
-	password: String
+	"email": String,
+	"password": String
 }
 ```
 
@@ -41,10 +49,10 @@ data:
 
 ```
 {
-	firstName: String,
-	lastName: String
-	email: String,
-	password: String
+	"firstName": String,
+	"lastName": String
+	"email": String,
+	"password": String
 }
 ```
 
@@ -56,14 +64,14 @@ response:
 
 ```
 [{
-	id:
-	title: String,
-	format: String,
-	totalPlayers: Num,
-	currentPlayers: Num,
-	description: String,
-	progress: String,
-	game: String
+	"id":
+	"title": String,
+	"format": String,
+	"totalPlayers": Num,
+	"currentPlayers": Num,
+	"description": String,
+	"progress": String,
+	"game": String
 }]
 ```
 
@@ -74,9 +82,12 @@ method: `GET`
 response:
 
 ```
-[{
-	userId:
-}]
+{
+	"contestId":
+	[{
+		"userId":
+	}]
+}
 ```
 
 ### Get the Profile of a Player
@@ -87,11 +98,11 @@ response:
 
 ```
 {
-	firstName: String,
-	lastName: String
-	email: String,
-	userType:
-	avatar: String,
+	"firstName": String,
+	"lastName": String
+	"email": String,
+	"userType":
+	"avatar": String,
 }
 ```
 
@@ -108,19 +119,20 @@ response:
 
 ```
 {
-	type: String,
-	content: {
-		playerId:
-		win: Num,
-		lose: Num,
-		draw: Num,
-		winPoints: Num,
-		losePoints: Num,
-		totalPoints: Num
+	"type": String,
+	"contestId":
+	"content": {
+		"playerId":
+		"win": Num,
+		"lose": Num,
+		"draw": Num,
+		"winPoints": Num,
+		"losePoints": Num,
+		"totalPoints": Num
 	} | [{
-		matchId:
-		childMatch1Id:
-		childMatch2Id:
+		"matchId":
+		"childMatch1Id":
+		"childMatch2Id":
 	}]
 }
 ```
@@ -133,11 +145,12 @@ response:
 
 ```
 [{
-	matchId:
-	player1Id:
-	player2Id:
-	score1: Num,
-	score2: Num
+	"matchId":
+	"contestId":
+	"player1Id":
+	"player2Id":
+	"score1": Num,
+	"score2": Num
 }]
 ```
 
@@ -154,20 +167,18 @@ data:
 
 ```
 {
-	title: String,
-	format: String,
-	totalPlayers: Num,
-	description: String,
-	game: String
+	"title": String,
+	"format": String,
+	"totalPlayers": Num,
+	"description": String,
+	"game": String
 }
 ```
 
 response:
 
 ```
-{
-	id:
-}
+The same as contest
 ```
 
 ### Register for a Contest
@@ -178,7 +189,7 @@ data:
 
 ```
 {
-	userid:
+	"userid":
 }
 ```
 
@@ -190,7 +201,7 @@ data:
 
 ```
 {
-	score1: Num,
-	score2: Num
+	"score1": Num,
+	"score2": Num
 }
 ```
