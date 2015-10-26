@@ -58,7 +58,7 @@ response:
 [{
 	id:
 	title: String,
-	type: String,
+	format: String,
 	totalPlayers: Num,
 	currentPlayers: Num,
 	description: String,
@@ -155,7 +155,7 @@ data:
 ```
 {
 	title: String,
-	type: String,
+	format: String,
 	totalPlayers: Num,
 	description: String,
 	game: String
