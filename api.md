@@ -183,19 +183,19 @@ The same as contest
 
 ### Register for a Contest
 
-url: `/contest/<contestid>`
+url: `/contest/<contest_id>`
 method: `PUT`
 data:
 
 ```
 {
-	"userid":
+	"userId":
 }
 ```
 
 ### Upload a Match Result
 
-url: `/match/<matchid>`
+url: `/match/<match_id>`
 method: `PUT`
 data:
 
