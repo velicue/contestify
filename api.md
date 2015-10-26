@@ -84,9 +84,9 @@ response:
 ```
 {
 	"contestId":
-	[{
-		"userId":
-	}]
+	"userIds:": [
+		ObjectID,
+	]
 }
 ```
 
