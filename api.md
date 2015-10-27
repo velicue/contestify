@@ -12,6 +12,7 @@
 
 ## Id format
 
+All objects have a `_id` property
 ```
 {
 	"$oid": String
@@ -156,14 +157,15 @@ method: `GET`
 response:
 
 ```
-[{
-	"matchId":
+{
 	"contestId":
-	"player1Id":
-	"player2Id":
-	"score1": Num,
-	"score2": Num
-}]
+	"matches": [{
+		"player1Id":
+		"player2Id":
+		"score1": Num,
+		"score2": Num
+	}]
+}
 ```
 
 ## Get the Information of a Match - Todo
