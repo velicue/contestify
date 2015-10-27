@@ -18,12 +18,24 @@
 }
 ```
 
-## Login Page
+## Login Page - Done
 
 url: `/login`
 method: `GET`
 
-## Login
+## Current User - Done
+
+url: `/currentUser`
+method: `GET`
+response:
+
+```
+{
+	"currentUserId": "562e883002074076e8c69bda"
+}
+```
+
+## Login - Done
 
 url: `/login`
 method: `POST`
@@ -36,12 +48,12 @@ data:
 }
 ```
 
-## Logout
+## Logout - Todo
 
 url: `/logout`
 method: `POST`
 
-## Signup
+## Signup - Done
 
 url: `/register`
 method: `POST`
@@ -56,7 +68,7 @@ data:
 }
 ```
 
-## Get List of Contests
+## Get List of Contests - Done
 
 url: `/publicContestList`
 method: `GET`
@@ -75,7 +87,7 @@ response:
 }]
 ```
 
-## Get the List of Players of a Contest
+## Get the List of Players of a Contest - Done
 
 url: `/playerList?id=contestid`
 method: `GET`
@@ -90,7 +102,7 @@ response:
 }
 ```
 
-### Get the Profile of a Player
+## Get the Profile of a Player - Done
 
 url: `/user?id=userid`
 method: `GET`
@@ -106,12 +118,12 @@ response:
 }
 ```
 
-### Get the Info of a Contest
+## Get the Info of a Contest - Done
 
 url: `/contest?id=contestid`
 method: `GET`
 
-### Get the Graph of a Contest
+## Get the Graph of a Contest - Todo
 
 url: `/graph?id=contestid`
 method: `GET`
@@ -137,7 +149,7 @@ response:
 }
 ```
 
-### Get the Schedule of a Contest
+## Get the Schedule of a Contest - Todo
 
 url: `/matchList?id=contestid`
 method: `GET`
@@ -154,12 +166,12 @@ response:
 }]
 ```
 
-### Get the Information of a Match
+## Get the Information of a Match - Todo
 
 url: `/match?id=matchid`
 method: `GET`
 
-### Create a New Contest
+## Create a New Contest - Not Completed
 
 url: `/contest`
 method: `POST`
@@ -181,7 +193,7 @@ response:
 The same as contest
 ```
 
-### Register for a Contest
+## Register for a Contest - Done
 
 url: `/contest/<contest_id>`
 method: `PUT`
@@ -193,7 +205,7 @@ data:
 }
 ```
 
-### Upload a Match Result
+## Upload a Match Result - Todo
 
 url: `/match/<match_id>`
 method: `PUT`
