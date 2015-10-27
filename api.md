@@ -157,13 +157,15 @@ method: `GET`
 response:
 
 ```
-[{
+{
 	"contestId":
-	"player1Id":
-	"player2Id":
-	"score1": Num,
-	"score2": Num
-}]
+	"matches": [{
+		"player1Id":
+		"player2Id":
+		"score1": Num,
+		"score2": Num
+	}]
+}
 ```
 
 ## Get the Information of a Match - Todo
