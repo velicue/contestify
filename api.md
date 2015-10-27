@@ -193,7 +193,7 @@ response:
 The same as contest
 ```
 
-## Register for a Contest - Done
+## Register for a Contest - Not Completed
 
 url: `/contest/<contest_id>`
 method: `PUT`
