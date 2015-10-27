@@ -12,6 +12,7 @@
 
 ## Id format
 
+All objects have a `_id` property
 ```
 {
 	"$oid": String
@@ -157,7 +158,6 @@ response:
 
 ```
 [{
-	"matchId":
 	"contestId":
 	"player1Id":
 	"player2Id":
