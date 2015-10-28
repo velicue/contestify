@@ -7,6 +7,7 @@ from flask.ext.login import *
 from flask.ext.login import login_required
 from flask.ext.login import current_user
 from flask.ext.login import AnonymousUserMixin
+from flask.ext.login import logout_user
 from response import response
 
 app = flask.Flask(__name__)
@@ -73,7 +74,6 @@ def register_post():
 		return response('Failed', 'Registration Failed.', None)
 
 @app.route("/logout", methods=['POST'])
-@login_required
 def logout():
 	logout_user()
 	return response('OK', 'Logout Success.', None)
