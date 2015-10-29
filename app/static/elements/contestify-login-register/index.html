@@ -1,0 +1,67 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/gold-email-input/gold-email-input.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/classes/iron-flex-layout.html">
+<link rel="import" href="style.html">
+
+<dom-module id="contestify-login-register">
+  <template>
+  <style include='contestify-login-register-style'></style>
+  <paper-card elevation=5 hidden$='{{isHidden}}'>
+    <div class="card-content">
+      <paper-tabs id='tabSection' selected='{{sectionIndex}}'>
+        <paper-tab>Register</paper-tab>
+        <paper-tab>Login</paper-tab>
+      </paper-tabs>
+      <iron-pages selected='{{sectionIndex}}'>
+        <section id='sectionRegister'>
+          <gold-email-input
+            id='inputEmailRegister'
+            required label="Email"
+            auto-validate
+            error-message='Please enter a valid email'>
+          </gold-email-input>
+          <paper-input
+            id='inputFirstRegister'
+            required
+            auto-validate
+            label="First Name"
+            type='text'
+            error-message='Please enter your first name'>
+          </paper-input>
+          <paper-input
+            id='inputLastRegister'
+            required
+            auto-validate
+            label="Last Name"
+            type='text'
+            error-message='Please enter your last name'>
+          </paper-input>
+          <paper-input
+            id='inputPasswordRegister'
+            required
+            auto-validate
+            label="Password"
+            type='password'
+            error-message='Please enter a password'
+          </paper-input>
+        </section>
+        <section id='sectionLogin'>
+          <gold-email-input id='inputEmailLogin' required auto-validate label="Email" auto-validate error-message='Please enter a valid email'></gold-email-input>
+          <paper-input id='inputPasswordLogin' required auto-validate label="Password" type='password'></paper-input>
+        </section>
+      </iron-pages>
+    </div>
+    <div class="card-actions layout horizontal">
+      <paper-button id='btnCancle' on-tap=hide>Cancel</paper-button>
+      <span class="flex"></span>
+      <paper-button id='btnSubmit' on-tap=submit>Submit</paper-button>
+    </div>
+  </paper-card>
+  </template>
+  <script src='main.js'></script>
+</dom-module>

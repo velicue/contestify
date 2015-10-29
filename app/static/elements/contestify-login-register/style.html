@@ -1,0 +1,27 @@
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<dom-module id='contestify-login-register-style'><template>
+<style is="custom-style">
+  :host {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  :host ::content paper-card {
+    width: 300px;
+  }
+  :host ::content paper-card .card-content {
+    transition: height 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  :host ::content paper-tabs {
+    --paper-tabs-selection-bar-color: var(--accent-color);
+    --paper-tab-ink: var(--accent-color);
+  }
+  :host ::content paper-tab {
+    --paper-tab-ink: var(--accent-color);
+  }
+  :host ::content paper-button {
+    --paper-button-ink-color: var(--accent-color);
+  }
+</style>
+</template></dom-module>
