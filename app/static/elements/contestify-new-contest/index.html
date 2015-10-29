@@ -1,0 +1,55 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-textarea.html">
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="style.html">
+
+<dom-module id="contestify-new-contest">
+  <template>
+    <style include='contestify-new-contest-style'></style>
+    <paper-card heading='New Contest' image='http://i1.17173cdn.com/2fhnvk/YWxqaGBf/outcms/HHkhzzbjwndDodr.jpg' elevation=5 hidden$={{isHidden}}>
+      <div class="card-content">
+        <form is="iron-form" content-type="application/json" id="formNewContest" method="post" action="/contest">
+          <paper-input
+            required
+            error-message='Please enter the title'
+            name="title"
+            label="Title">
+          </paper-input>
+          <paper-textarea
+            required
+            error-message='Please enter the description'
+            name="description"
+            label="Description">
+          </paper-textarea>
+          <paper-input
+            required
+            error-message='Please enter the number of participants'
+            type='number'
+            max=64
+            placeholder='32'
+            name="totalPlayers"
+            label="Total Players">
+          </paper-input>
+          <paper-input
+            required
+            error-message='Please enter the game you want to host'
+            name="game"
+            label="Game">
+          </paper-input>
+          <paper-input
+            required
+            name="format"
+            readonly
+            value='Elimination'
+            label="Contest Format">
+          </paper-input>
+          <paper-button raised on-tap=formSubmit>Submit</paper-button>
+        </form>
+      </div>
+    </paper-card>
+  </template>
+  <script src='main.js'></script>
+</dom-module>

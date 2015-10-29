@@ -1,0 +1,136 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-item/paper-icon-item.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item-body.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+
+<link rel="import" href="style.html">
+
+<dom-module id='contestify-contest'>
+  <template>
+    <style include='contestify-contest-style'></style>
+    <paper-card id='cardPeople'>
+      <div id='listPeople' class='card-content'>
+        <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Meine Batbayar</div> <div secondary>Your status is visible to everyone</div> </paper-item-body> <div class='rank'>100</div> </paper-icon-item>
+        <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Eiríkr Dallas</div> <div secondary>Your status is visible to everyone</div> </paper-item-body> <div class='rank'>93</div> </paper-icon-item>
+        <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Delaiah Sidonius</div> <div secondary>Your status is visible to everyone</div> </paper-item-body> <div class='rank'>89</div> </paper-icon-item>
+        <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Cyril Vilĉjo</div> <div secondary>Your status is visible to everyone</div> </paper-item-body> <div class='rank'>82</div> </paper-icon-item>
+        <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Gwrtheyrn Shihab</div> <div secondary>Your status is visible to everyone</div> </paper-item-body> <div class='rank'>79</div> </paper-icon-item>
+        <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Theron Urs</div> <div secondary>Your status is visible to everyone</div> </paper-item-body> <div class='rank'>79</div> </paper-icon-item>
+        <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Sage Miltiades</div> <div secondary>Your status is visible to everyone</div> </paper-item-body> <div class='rank'>77</div> </paper-icon-item>
+        <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Madhava Venyamin</div> <div secondary>Your status is visible to everyone</div> </paper-item-body> <div class='rank'>72</div> </paper-icon-item>
+        <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Leighton Amhlaidh</div> <div secondary>Your status is visible to everyone</div> </paper-item-body> <div class='rank'>69</div> </paper-icon-item>
+        <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>'Ali Azad</div> <div secondary>Your status is visible to everyone</div> </paper-item-body> <div class='rank'>60</div> </paper-icon-item>
+        <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Saturninus Ninian</div> <div secondary>Your status is visible to everyone</div> </paper-item-body> <div class='rank'>54</div> </paper-icon-item>
+        <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Neofytos Lugh</div> <div secondary>Your status is visible to everyone</div> </paper-item-body> <div class='rank'>42</div> </paper-icon-item>
+      </div>
+    </paper-card>
+    <section id='sectionMatches'>
+      <div class='match-item'>
+        <paper-card status='winner' class='match-result-left'>
+          <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Thor Oier</div> </paper-item-body> <div class='rank'>3</div> </paper-icon-item>
+        </paper-card>
+
+        <paper-card status='loser' class='match-result-right'>
+          <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Marvyn Iona</div> </paper-item-body> <div class='rank'>2</div> </paper-icon-item>
+        </paper-card>
+      </div>
+      <div class='match-item'>
+        <paper-card status='winner' class='match-result-left'>
+          <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Atilius Chares</div> </paper-item-body> <div class='rank'>3</div> </paper-icon-item>
+        </paper-card>
+
+        <paper-card status='loser' class='match-result-right'>
+          <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Scotty Anđelko</div> </paper-item-body> <div class='rank'>0</div> </paper-icon-item>
+        </paper-card>
+      </div>
+      <div class='match-item'>
+        <paper-card status='winner' class='match-result-left'>
+          <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Ryuu Ioel</div> </paper-item-body> <div class='rank'>3</div> </paper-icon-item>
+        </paper-card>
+
+        <paper-card status='loser' class='match-result-right'>
+          <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Marko Shou</div> </paper-item-body> <div class='rank'>1</div> </paper-icon-item>
+        </paper-card>
+      </div>
+      <div class='match-item'>
+        <paper-card status='winner' class='match-result-left'>
+          <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Pentti Yevgeni</div> </paper-item-body> <div class='rank'>3</div> </paper-icon-item>
+        </paper-card>
+
+        <paper-card status='loser' class='match-result-right'>
+          <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Georgios Camilo</div> </paper-item-body> <div class='rank'>0</div> </paper-icon-item>
+        </paper-card>
+      </div>
+      <div class='match-item'>
+        <paper-card status='winner' class='match-result-left'>
+          <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Syed Monroe</div> </paper-item-body> <div class='rank'>3</div> </paper-icon-item>
+        </paper-card>
+
+        <paper-card status='loser' class='match-result-right'>
+          <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Angelus Ioannes</div> </paper-item-body> <div class='rank'>1</div> </paper-icon-item>
+        </paper-card>
+      </div>
+      <div class='match-item'>
+        <paper-card status='winner' class='match-result-left'>
+          <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Abessalom Garnett</div> </paper-item-body> <div class='rank'>2</div> </paper-icon-item>
+        </paper-card>
+
+        <paper-card status='loser' class='match-result-right'>
+          <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Włodek Algar</div> </paper-item-body> <div class='rank'>1</div> </paper-icon-item>
+        </paper-card>
+      </div>
+      <div class='match-item'>
+        <paper-card status='winner' class='match-result-left'>
+          <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Gib Jin</div> </paper-item-body> <div class='rank'>2</div> </paper-icon-item>
+        </paper-card>
+
+        <paper-card status='loser' class='match-result-right'>
+          <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Trygve Jedidiah</div> </paper-item-body> <div class='rank'>0</div> </paper-icon-item>
+        </paper-card>
+      </div>
+      <div class='match-item'>
+        <paper-card status='winner' class='match-result-left'>
+          <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Yarden Booz</div> </paper-item-body> <div class='rank'>1</div> </paper-icon-item>
+        </paper-card>
+
+        <paper-card status='loser' class='match-result-right'>
+          <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Xoán Llyr</div> </paper-item-body> <div class='rank'>0</div> </paper-icon-item>
+        </paper-card>
+      </div>
+      <div class='match-item'>
+        <paper-card status='winner' class='match-result-left'>
+          <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Búi Hermenegildo</div> </paper-item-body> <div class='rank'>1</div> </paper-icon-item>
+        </paper-card>
+
+        <paper-card status='loser' class='match-result-right'>
+          <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Bedřich Amin</div> </paper-item-body> <div class='rank'>0</div> </paper-icon-item>
+        </paper-card>
+      </div>
+      <div class='match-item'>
+        <paper-card status='winner' class='match-result-left'>
+          <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Ketill Viriato</div> </paper-item-body> <div class='rank'>3</div> </paper-icon-item>
+        </paper-card>
+
+        <paper-card status='loser' class='match-result-right'>
+          <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Jenaro Albert</div> </paper-item-body> <div class='rank'>2</div> </paper-icon-item>
+        </paper-card>
+      </div>
+      <div class='match-item'>
+        <paper-card status='winner' class='match-result-left'>
+          <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Lóegaire Yared</div> </paper-item-body> <div class='rank'>2</div> </paper-icon-item>
+        </paper-card>
+
+        <paper-card status='loser' class='match-result-right'>
+          <paper-icon-item> <div class="avatar" item-icon></div> <paper-item-body two-line> <div>Maayan Aodhagán</div> </paper-item-body> <div class='rank'>0</div> </paper-icon-item>
+        </paper-card>
+      </div>
+    </section>
+  </template>
+  <script src='main.js'></script>
+</dom-module>

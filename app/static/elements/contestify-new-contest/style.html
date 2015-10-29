@@ -1,0 +1,26 @@
+<dom-module id='contestify-new-contest-style'><template>
+<style is="custom-style">
+  :host {
+    position: fixed;
+    width: 360px;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  :host ::content paper-card {
+    width: 360px;
+    --paper-card-header-image-text: {
+      color: var(--text-primary-color);
+    };
+  }
+  :host ::content form {
+    @apply(--layout-vertical);
+    @apply(--layout-wrap);
+  }
+  :host ::content paper-button {
+    color: var(--text-primary-color);
+    background: var(--default-primary-color);
+  }
+</style>
+</template></dom-module>
