@@ -160,7 +160,7 @@ response:
 {
 	"contestId":
 	"matches": [
-		ObjectId
+		ObjectId,
 	]
 }
 ```
@@ -176,7 +176,8 @@ response:
 	"player1Id":
 	"player2Id":
 	"score1": Num,
-	"score2": Num
+	"score2": Num,
+	"day": Num
 }
 ```
 
