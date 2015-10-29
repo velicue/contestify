@@ -159,12 +159,9 @@ response:
 ```
 {
 	"contestId":
-	"matches": [{
-		"player1Id":
-		"player2Id":
-		"score1": Num,
-		"score2": Num
-	}]
+	"matches": [
+		ObjectId
+	]
 }
 ```
 
@@ -172,6 +169,16 @@ response:
 
 url: `/match?id=matchid`
 method: `GET`
+response:
+
+```
+{
+	"player1Id":
+	"player2Id":
+	"score1": Num,
+	"score2": Num
+}
+```
 
 ## Create a New Contest - Not Completed
 
