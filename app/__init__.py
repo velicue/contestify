@@ -67,11 +67,45 @@ def login_post():
 @app.route('/register', methods=['POST'])
 def register_post():
 	content = flask.request.json
-	t = userauth.register(content)
+	t = userauth.register(content, 0)
 	if t:
 		return response('OK', 'Registration Success.', None)
 	else:
 		return response('Failed', 'Registration Failed.', None)
+
+@app.route('/registerEmptyUsers', methods=['POST'])
+def register_empty_users_post():
+	for i in range(int(128)):
+		content = {}
+		content["email"] = "Player" + str(i) + "@contestify.com"
+		content["password"] = "QWERQWERQWER"
+		content["firstName"] = "Player"
+		content["lastName"] = str(i)
+		t = userauth.register(content, 1)
+	
+	return response('OK', 'Batch Registration Success.', None)
+
+@app.route('/registerTBDUser', methods=['POST'])
+def register_TBD_user_post():
+	content = {}
+	content["email"] = "TBD" + "@contestify.com"
+	content["password"] = "QWERQWERQWER"
+	content["firstName"] = ""
+	content["lastName"] = "TBD"
+	t = userauth.register(content, 2)
+	
+	return response('OK', 'TBD Registration Success.', None)
+
+@app.route('/registerBYEUser', methods=['POST'])
+def register_BYE_user_post():
+	content = {}
+	content["email"] = "BYE" + "@contestify.com"
+	content["password"] = "QWERQWERQWER"
+	content["firstName"] = ""
+	content["lastName"] = "BYE"
+	t = userauth.register(content, 3)
+	
+	return response('OK', 'BYE Registration Success.', None)
 
 @app.route("/logout", methods=['POST'])
 def logout():
@@ -110,6 +144,18 @@ def contest_get():
 def player_list_get():
 	contest_id = flask.request.args.get('id')
 	t = contestmanage.get_player_list_by_contest_id(contest_id = contest_id)
+	return response('OK', '', t)
+
+@app.route('/match', methods=['GET'])
+def match_get():
+	contest_id = flask.request.args.get('id')
+	t = contestmanage.get_match_by_id(match_id = contest_id)
+	return response('OK', '', t)
+
+@app.route('/matchList', methods=['GET'])
+def match_list_get():
+	contest_id = flask.request.args.get('id')
+	t = contestmanage.get_match_list_by_contest_id(contest_id = contest_id)
 	return response('OK', '', t)
 
 @app.route('/contest', methods=['POST'])

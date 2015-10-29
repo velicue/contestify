@@ -8,8 +8,8 @@ from app import login_manager
 def load_user(user_id):
 	return User.objects(id = user_id)[0]
 
-def register(user_info):
-	nuser = User(firstName = user_info['firstName'], lastName = user_info['lastName'], email = user_info['email'], password = user_info['password'], userType = 0)
+def register(user_info, user_type):
+	nuser = User(firstName = user_info['firstName'], lastName = user_info['lastName'], email = user_info['email'], password = user_info['password'], userType = user_type)
 	try:
 		nuser.save()
 		return True
