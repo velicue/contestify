@@ -205,7 +205,7 @@ The same as contest
 
 ## Register for a Contest - Not Completed
 
-url: `/contest/<contest_id>`
+url: `/playerList/<contest_id>`
 method: `PUT`
 data:
 
