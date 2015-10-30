@@ -36,10 +36,12 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login_get"
 
+'''
 @app.route("/",methods=["GET"])
 @login_required
 def protected():
 	return flask.Response(response="Hello Protected World!" + current_user.email, status=200)
+'''
 
 #authentication API
 import userauth
@@ -170,10 +172,22 @@ def contest_put(contest_id):
 	contestmanage.insert_player_list(contest_id, content["userId"])
 	return response('OK', 'Register Success.', None)
 
+@app.route('/')
+def index():
+	return app.send_static_file('index.html')
+
+@app.route('/<path:path>/')
+def static_proxy_index(path):
+	# send_static_file will guess the correct MIME type
+	print path + 'index.html'
+	return app.send_static_file(path)
+
 #static
 @app.route('/<path:path>')
 def static_proxy(path):
 	# send_static_file will guess the correct MIME type
 	print path
 	return app.send_static_file(path)
+
+
 
