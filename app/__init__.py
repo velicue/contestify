@@ -152,12 +152,6 @@ def player_list_get():
 	t = contestmanage.get_player_list_by_contest_id(contest_id = contest_id)
 	return response('OK', '', t)
 
-@app.route('/playerList/<contest_id>', methods=['PUT'])
-def player_list_put(contest_id):
-	content = flask.request.json
-	t = contestmanage.register_player(contest_id = contest_id, user_id = content["userId"])
-	return response('OK', '', t)
-
 @app.route('/match', methods=['GET'])
 def match_get():
 	contest_id = flask.request.args.get('id')
@@ -175,6 +169,19 @@ def contest_post():
 	content = flask.request.json
 	t = contestmanage.new_contest(content)
 	return response('OK', 'New Contest Success.', t)
+
+@app.route('/playerList/<contest_id>', methods=['PUT'])
+def player_list_put(contest_id):
+	content = flask.request.json
+	contestmanage.register_player(contest_id = contest_id, user_id = content["userId"])
+	return response('OK', '', None)
+
+@app.route('/match/<match_id>', methods=['PUT'])
+def player_list_put(match_id):
+	content = flask.request.json
+	contestmanage.upload_match_result(match_id = match_id, contest_id = content["contestId"], score1 = content["score1"], score2 = content["score1"])
+	return response('OK', '', None)
+
 
 #static
 @app.route('/<path:path>/')

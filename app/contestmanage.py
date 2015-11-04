@@ -2,6 +2,7 @@ from model.contest import Contest
 from model.playerlist import PlayerList
 from model.match import Match, MatchList
 from model.graph import Graph1
+from model.graph import Graph1Item
 
 import usermanage
 
@@ -16,7 +17,7 @@ def new_contest(contest_info):
 	ncontest.save()
 	new_player_list(ncontest.id, contest_info['totalPlayers'])
 	generate_match_list(ncontest.id)
-	#generate_graph(ncontest.id)
+	generate_graph(ncontest.id)
 	return ncontest
 
 def get_player_list_by_contest_id(contest_id):
@@ -87,3 +88,70 @@ def generate_match_list(contest_id):
 		match_list = MatchList(contestId = contest_id, matches = [])
 		for i in matches: match_list.matches.append(i.id)
 		match_list.save()
+
+def get_graph_by_contest_id(contest_id):
+	return Graph.objects(contestId = contest_id)[0]
+
+def generate_graph(contest_id):
+	contest = get_contest_by_id(contest_id)
+	player_list = get_player_list_by_contest_id(contest_id)
+	if contest.format == "Single Round-Robin":
+		n = contest.totalPlayers
+		items = 0
+		for i in range(0, n):
+			item = Graph1Item(playerId = player_list.userIds[i], win = 0, lose = 0, draw = 0, winPoints = 0, losePoints = 0, totalPoints = 0)
+			items.append(item)
+		graph = Graph1(contestId = contest_id, items = items)
+		graph.save()
+
+def upload_match_result(match_id, contest_id, score1, score2):
+	contest = get_contest_by_id(contest_id)
+	match = get_match_by_id(match_id)
+	match.score1 = score1
+	match.score2 = score2
+	graph = get_graph_by_contest_id()
+	if score1 > score2:
+		p1 = 3
+		p2 = 0
+		w1 = 1
+		w2 = 0
+		l1 = 0
+		l2 = 1
+		d1 = 0
+		d2 = 0
+	elif score1 < score2:
+		t1 = 0
+		t2 = 3
+		w1 = 0
+		w2 = 1
+		l1 = 1
+		l2 = 0
+		d1 = 0
+		d2 = 0
+	else:
+		t1 = 1
+		t2 = 1
+		w1 = 0
+		w2 = 0
+		l1 = 0
+		l2 = 0
+		d1 = 1
+		d2 = 1
+	if contest.format == "Single Round-Robin":
+		n = contest.totalPlayers
+		for i in range(0, n):
+			if graph.items[i].playerId == match.player1Id:
+				graph.items[i].win += w1
+				graph.items[i].lose += l1
+				graph.items[i].draw += d1
+				graph.items[i].winPoints += score1
+				graph.items[i].losePoints += score2
+				graph.items[i].totalPoints += p1
+			if graph.items[i].playerId == match.player2Id:
+				graph.items[i].win += w2
+				graph.items[i].lose += l2
+				graph.items[i].draw += d2
+				graph.items[i].winPoints += score2
+				graph.items[i].losePoints += score1
+				graph.items[i].totalPoints += p2
+		graph.save()
