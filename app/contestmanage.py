@@ -12,7 +12,7 @@ def get_contest_by_id(contest_id):
 	return Contest.objects(id = contest_id)[0]
 
 def new_contest(contest_info):
-	ncontest = Contest(title = contest_info['title'], format = contest_info['format'], totalPlayers = contest_info['totalPlayers'], description = contest_info['description'], game = contest_info['game'])
+	ncontest = Contest(title = contest_info['title'], format = contest_info['format'], totalPlayers = contest_info['totalPlayers'], description = contest_info['description'], game = contest_info['game'], currentPlayers = 0, progress = "")
 	ncontest.save()
 	new_player_list(ncontest.id, contest_info['totalPlayers'])
 	generate_match_list(ncontest.id)
@@ -28,10 +28,20 @@ def new_player_list(contest_id, player_num):
 		nplayer_list.userIds.append(usermanage.get_user_by_name("Player", str(i)).id)
 	nplayer_list.save()
 
-def insert_player_list(contest_id, user_id):
+def register_player(contest_id, user_id):
+	contest = Contest.objects(id = contest_id)[0]
 	player_list = PlayerList.objects(contestId = contest_id)[0]
-	player_list.userIds.append(user_id)
+	user_id_to_substitute = player_list.userIds[contest.currentPlayers]
+	player_list.userIds[contest.currentPlayers] = user_id
 	player_list.save()
+	contest.currentPlayers += 1
+	contest.save()
+	for i in Match.objects(player1Id = user_id_to_substitute):
+		i.player1Id = user_id
+		i.save()
+	for i in Match.objects(player2Id = user_id_to_substitute):
+		i.player2Id = user_id
+		i.save()
 
 def get_match_by_id(match_id):
 	return Match.objects(id = match_id)[0]

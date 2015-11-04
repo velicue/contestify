@@ -36,6 +36,10 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login_get"
 
+@app.route('/')
+def index():
+	return app.send_static_file('index.html')
+
 '''
 @app.route("/",methods=["GET"])
 @login_required
@@ -148,6 +152,12 @@ def player_list_get():
 	t = contestmanage.get_player_list_by_contest_id(contest_id = contest_id)
 	return response('OK', '', t)
 
+@app.route('/playerList/<contest_id>', methods=['PUT'])
+def player_list_put(contest_id):
+	content = flask.request.json
+	t = contestmanage.register_player(contest_id = contest_id, user_id = content["userId"])
+	return response('OK', '', t)
+
 @app.route('/match', methods=['GET'])
 def match_get():
 	contest_id = flask.request.args.get('id')
@@ -166,23 +176,13 @@ def contest_post():
 	t = contestmanage.new_contest(content)
 	return response('OK', 'New Contest Success.', t)
 
-@app.route('/contest/<contest_id>', methods=['PUT'])
-def contest_put(contest_id):
-	content = flask.request.json
-	contestmanage.insert_player_list(contest_id, content["userId"])
-	return response('OK', 'Register Success.', None)
-
-@app.route('/')
-def index():
-	return app.send_static_file('index.html')
-
+#static
 @app.route('/<path:path>/')
 def static_proxy_index(path):
 	# send_static_file will guess the correct MIME type
 	print path + 'index.html'
 	return app.send_static_file(path)
 
-#static
 @app.route('/<path:path>')
 def static_proxy(path):
 	# send_static_file will guess the correct MIME type
