@@ -164,6 +164,12 @@ def match_list_get():
 	t = contestmanage.get_match_list_by_contest_id(contest_id = contest_id)
 	return response('OK', '', t)
 
+@app.route('/graph', methods=['GET'])
+def graph_get():
+	contest_id = flask.request.args.get('id')
+	t = contestmanage.get_graph_by_contest_id(contest_id = contest_id)
+	return response('OK', '', t)
+
 @app.route('/contest', methods=['POST'])
 def contest_post():
 	content = flask.request.json
