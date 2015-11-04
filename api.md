@@ -223,6 +223,7 @@ data:
 
 ```
 {
+	"contestId":
 	"score1": Num,
 	"score2": Num
 }
