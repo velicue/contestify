@@ -49,7 +49,7 @@ data:
 }
 ```
 
-## Logout - Todo
+## Logout - Done
 
 url: `/logout`
 method: `POST`
@@ -124,7 +124,7 @@ response:
 url: `/contest?id=contestid`
 method: `GET`
 
-## Get the Graph of a Contest - Todo
+## Get the Graph of a Contest - Done
 
 url: `/graph?id=contestid`
 method: `GET`
@@ -132,7 +132,6 @@ response:
 
 ```
 {
-	"type": String,
 	"contestId":
 	"content": {
 		"playerId":
@@ -150,7 +149,7 @@ response:
 }
 ```
 
-## Get the Schedule of a Contest - Todo
+## Get the Schedule of a Contest - Done
 
 url: `/matchList?id=contestid`
 method: `GET`
@@ -165,7 +164,7 @@ response:
 }
 ```
 
-## Get the Information of a Match - Todo
+## Get the Information of a Match - Done
 
 url: `/match?id=matchid`
 method: `GET`
@@ -181,7 +180,7 @@ response:
 }
 ```
 
-## Create a New Contest - Not Completed
+## Create a New Contest - Done
 
 url: `/contest`
 method: `POST`
@@ -203,7 +202,7 @@ response:
 The same as contest
 ```
 
-## Register for a Contest - Not Completed
+## Register for a Contest - Done
 
 url: `/playerList/<contest_id>`
 method: `PUT`
@@ -215,7 +214,7 @@ data:
 }
 ```
 
-## Upload a Match Result - Todo
+## Upload a Match Result - Done
 
 url: `/match/<match_id>`
 method: `PUT`
