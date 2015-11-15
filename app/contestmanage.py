@@ -97,7 +97,7 @@ def generate_graph(contest_id):
 	player_list = get_player_list_by_contest_id(contest_id)
 	if contest.format == "Single Round-Robin":
 		n = contest.totalPlayers
-		items = 0
+		items = []
 		for i in range(0, n):
 			item = Graph1Item(playerId = player_list.userIds[i], win = 0, lose = 0, draw = 0, winPoints = 0, losePoints = 0, totalPoints = 0)
 			items.append(item)
