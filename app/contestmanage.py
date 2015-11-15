@@ -13,7 +13,7 @@ def get_contest_by_id(contest_id):
 	return Contest.objects(id = contest_id)[0]
 
 def new_contest(contest_info):
-	ncontest = Contest(title = contest_info['title'], format = contest_info['format'], totalPlayers = contest_info['totalPlayers'], description = contest_info['description'], game = contest_info['game'], currentPlayers = 0, progress = "")
+	ncontest = Contest(title = contest_info['title'], format = contest_info['format'], totalPlayers = contest_info['totalPlayers'], description = contest_info['description'], game = contest_info['game'], adminId = contest_info['adminId'], currentPlayers = 0, progress = "")
 	ncontest.save()
 	new_player_list(ncontest.id, contest_info['totalPlayers'])
 	generate_match_list(ncontest.id)

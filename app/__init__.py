@@ -173,6 +173,7 @@ def graph_get():
 @app.route('/contest', methods=['POST'])
 def contest_post():
 	content = flask.request.json
+	content['adminId'] = current_user.get_id()
 	t = contestmanage.new_contest(content)
 	return response('OK', 'New Contest Success.', t)
 

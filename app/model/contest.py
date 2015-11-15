@@ -8,4 +8,5 @@ class Contest(db.Document):
 	description = db.StringField()
 	progress = db.StringField()
 	game = db.StringField()
+	adminId = db.ObjectIdField()
 	
