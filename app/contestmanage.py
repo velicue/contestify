@@ -90,7 +90,7 @@ def generate_match_list(contest_id):
 		match_list.save()
 
 def get_graph_by_contest_id(contest_id):
-	return Graph.objects(contestId = contest_id)[0]
+	return Graph1.objects(contestId = contest_id)[0]
 
 def generate_graph(contest_id):
 	contest = get_contest_by_id(contest_id)
