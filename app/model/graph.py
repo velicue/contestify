@@ -1,5 +1,5 @@
 from app import db
-class Graph1Item(db.EmbeddedDocument)
+class Graph1Item(db.EmbeddedDocument):
 	playerId = db.ObjectIdField()
 	win = db.IntField()
 	lose = db.IntField()
