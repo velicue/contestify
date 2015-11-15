@@ -183,7 +183,7 @@ def player_list_put(contest_id):
 	return response('OK', '', None)
 
 @app.route('/match/<match_id>', methods=['PUT'])
-def player_list_put(match_id):
+def upload_match_result(match_id):
 	content = flask.request.json
 	contestmanage.upload_match_result(match_id = match_id, contest_id = content["contestId"], score1 = content["score1"], score2 = content["score1"])
 	return response('OK', '', None)
