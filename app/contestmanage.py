@@ -35,12 +35,23 @@ def register_player(contest_id, user_id):
 	user_id_to_substitute = player_list.userIds[contest.currentPlayers]
 	player_list.userIds[contest.currentPlayers] = user_id
 	player_list.save()
+	match_list = get_match_list_by_contest_id(contest_id)
 	contest.currentPlayers += 1
 	contest.save()
 	for i in Match.objects(player1Id = user_id_to_substitute):
+		if not i.id in match_list.matches: 
+			print "OK!"
+			continue
+		print "YEAH"
 		i.player1Id = user_id
 		i.save()
+
+	print "HAHA"
 	for i in Match.objects(player2Id = user_id_to_substitute):
+		if not i.id in match_list.matches:
+			print "OK!"
+			continue
+		print "YEAH"
 		i.player2Id = user_id
 		i.save()
 	if contest.format == "Single Round-Robin":
