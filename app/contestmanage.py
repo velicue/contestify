@@ -43,6 +43,13 @@ def register_player(contest_id, user_id):
 	for i in Match.objects(player2Id = user_id_to_substitute):
 		i.player2Id = user_id
 		i.save()
+	if contest.format == "Single Round-Robin":
+		graph1 = get_graph_by_contest_id(contest_id)
+		for i in graph1.items:
+			if i.playerId == user_id_to_substitute:
+				i.playerId = user_id
+				break
+		graph1.save()
 
 def get_match_by_id(match_id):
 	return Match.objects(id = match_id)[0]
