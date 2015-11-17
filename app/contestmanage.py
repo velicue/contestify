@@ -127,7 +127,7 @@ def upload_match_result(match_id, contest_id, score1, score2):
 	match = get_match_by_id(match_id)
 	match.score1 = score1
 	match.score2 = score2
-	graph = get_graph_by_contest_id()
+	graph = get_graph_by_contest_id(contest_id)
 	if score1 > score2:
 		p1 = 3
 		p2 = 0
@@ -138,8 +138,8 @@ def upload_match_result(match_id, contest_id, score1, score2):
 		d1 = 0
 		d2 = 0
 	elif score1 < score2:
-		t1 = 0
-		t2 = 3
+		p1 = 0
+		p2 = 3
 		w1 = 0
 		w2 = 1
 		l1 = 1
@@ -147,8 +147,8 @@ def upload_match_result(match_id, contest_id, score1, score2):
 		d1 = 0
 		d2 = 0
 	else:
-		t1 = 1
-		t2 = 1
+		p1 = 1
+		p2 = 1
 		w1 = 0
 		w2 = 0
 		l1 = 0
