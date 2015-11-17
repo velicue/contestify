@@ -127,7 +127,9 @@ def upload_match_result(match_id, contest_id, score1, score2):
 	match = get_match_by_id(match_id)
 	match.score1 = score1
 	match.score2 = score2
+	match.save()
 	graph = get_graph_by_contest_id(contest_id)
+	print score1, score2
 	if score1 > score2:
 		p1 = 3
 		p2 = 0
