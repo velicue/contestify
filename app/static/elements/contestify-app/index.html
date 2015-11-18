@@ -5,70 +5,15 @@
 <link rel="import" href="../../bower_components/iron-flex-layout/classes/iron-flex-layout.html">
 <link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
 <link rel="import" href="../contestify-feed/index.html">
 <link rel="import" href="../contestify-login-register/index.html">
 <link rel="import" href="../contestify-contest/index.html">
+<link rel="import" href="../contestify-toast/index.html">
 <link rel="import" href="style.html">
 
 <dom-module id="contestify-app">
   <style include='contestify-app-style'></style>
   <template>
-    <!-- currentUser Ajax -->
-    <iron-ajax
-      id='ajaxCurrentUser'
-      auto
-      method='GET'
-      url="/currentUser"
-      handle-as="json"
-      on-response=onCurrentUserReceived
-      debounce-duration="300">
-    </iron-ajax>
-
-    <!-- user detail Ajax -->
-    <iron-ajax
-      id='ajaxUserDetail'
-      method='GET'
-      url="/user"
-      handle-as="json"
-      on-response=onUserDetailReceived
-      debounce-duration="300">
-    </iron-ajax>
-
-    <!-- register Ajax -->
-    <iron-ajax
-      id='ajaxRegister'
-      body='{{parse(formInfo)}}'
-      method='POST'
-      url="/register"
-      handle-as="json"
-      content-type="application/json"
-      on-response=onRegisterReceived
-      debounce-duration="300">
-    </iron-ajax>
-
-    <!-- login Ajax -->
-    <iron-ajax
-      id='ajaxLogin'
-      body='{{parse(formInfo)}}'
-      method='POST'
-      url="/login"
-      handle-as="json"
-      content-type="application/json"
-      on-response=onLoginReceived
-      debounce-duration="300">
-    </iron-ajax>
-
-    <!-- logout Ajax -->
-    <iron-ajax
-      id='ajaxLogout'
-      method='POST'
-      url="/logout"
-      handle-as="json"
-      on-response=onLogoutReceived
-      debounce-duration="300">
-    </iron-ajax>
-
     <!-- contest detail Ajax -->
     <iron-ajax
       id='ajaxContestDetail'
@@ -81,14 +26,14 @@
     </iron-ajax>
 
     <!-- Main Area -->
-    <paper-scroll-header-panel main id="headerPanelMain" condenses flex>
+    <paper-scroll-header-panel main id="headerPanelMain" condenses flex keep-condensed-header>
         <!-- Main Toolbar -->
       <paper-toolbar id="mainToolbar" class="tall">
         <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
         <span class="flex"></span>
 
         <!-- Toolbar icons -->
-        <paper-button hidden$="{{!isLoginRegister}}">Hi~
+        <!-- <paper-button hidden$="{{!isLoginRegister}}">Hi~
           <span>{{currentUser.firstName}}<span>
         </paper-button>
         <paper-button id='btnLogout' raised hidden$="{{!isLoginRegister}}" on-tap=logoutCurrentUser>Logout
@@ -96,8 +41,10 @@
         <paper-button
           id='btn-login-register'
           hidden$="{{isLoginRegister}}"
-          on-tap=toggleLoginRegister>Login / Register</paper-button>
-
+          on-tap=toggleLoginRegister>Login / Register
+        </paper-button> -->
+        <contestify-login-register meta-info={{meta}}>
+        </contestify-login-register>
         <!-- Application name -->
         <div class="middle middle-container center horizontal layout">
           <div class="app-name">{{meta.title}}</div>
@@ -117,12 +64,8 @@
         </contestify-contest>
       </iron-pages>
     </paper-scroll-header-panel>
-    <contestify-login-register is-hidden={{isLoginRegisterCardHidden}} form-info={{formInfo}} meta-info={{meta}}></contestify-login-register>
-
-    </contestify-new-contest>
-    <paper-toast id="toast">
-      <span class="toast-hide-button" role="button" tabindex="0" on-tap=hideToast>Ok</span>
-    </paper-toast>
+    <contestify-toast>
+    </contestify-toast>
   </template>
 
   <!-- build:js scripts/app.js -->

@@ -10,120 +10,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-material/paper-material.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
-<script src="../../bower_components/page/page.js"></script>
+<link rel="import" href="style.html">
 
 <dom-module id="contestify-card">
   <template>
-    <style>
-      :host {
-        display: block;
-        margin: 0 20px;
-      }
-
-      /* paper-material */
-      :host ::content paper-material {
-        border-radius: 2px;
-        width: 240px;
-        height: 320px;
-        padding: 0;
-        margin: 16px auto;
-        background: white;
-        transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1), width 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      :host ::content paper-material:hover {
-        @apply(--shadow-elevation-6dp);
-        cursor: pointer;
-      }
-
-      /* my card item */
-      :host ::content .my-card-item {
-        padding: 16px;
-      }
-
-      @media (max-width: 600px) {
-        :host ::content .my-card-item {
-          padding-left: 16px;
-          padding-right: 16px;
-        }
-      }
-      @media (min-width: 601px) {
-        :host ::content .my-card-item{
-          padding-left: 30px;
-          padding-right: 30px;
-        }
-      }
-
-      /* my card header*/
-      :host ::content .my-card-header {
-        background-color: var(--default-primary-color);
-        /*background-image: url('../../images/backgammon.jpeg'), -webkit-linear-gradient(top, rgba(255,255,255,0.5), rgba(255,255,255,0.5));*/
-        background-repeat: no-repeat;
-        background-size: cover;
-        color: var(--text-primary-color);
-      }
-
-      /* my card content*/
-      :host ::content .my-card-content {
-        margin: 0;
-      }
-
-      :host ::content .my-card-content paper-button {
-        margin-left: -9px;
-      }
-
-      /* my card footer*/
-      :host ::content .my-card-footer {
-        position: relative;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -ms-flex-direction: row;
-        -webkit-flex-direction: row;
-        flex-direction: row;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        align-items: center;
-        border-top: solid 1px var(--divider-color);
-      }
-
-      /* badge */
-      :host ::content .badge {
-        font-size: 10px;
-        padding: 4px;
-        border-radius: 10px;
-        background-color: var(--accent-color);
-      }
-
-      /* icon button */
-      :host ::content paper-icon-button {
-        color: var(--accent-color);
-      }
-
-      /* detail button */
-      #showDetail {
-        position: relative;
-        top: 4px;
-        left: 20px;
-      }
-    </style>
-
+    <style include='contestify-card-style'></style>
+    <iron-ajax
+      id='ajaxUserDetail'
+      method='GET'
+      handle-as="json"
+      on-response=onUserDetailReceived>
+    </iron-ajax>
       <paper-material id='cardContainer' elevation="1" on-tap=onCardTaped>
         <div id='header' class="my-card-item my-card-header">
-          <h2>[[matchTitle]]</h2>
-          <span class='badge'>[[matchFormat]]</span>
+          <div class="avatar" item-icon></div>
+          <span id='title'>[[matchGame]]</span>
         </div>
         <div class="my-card-item my-card-content">
-          <div class='info'>
-            <span>[[matchGame]]</span>
+          <div class='info subtitle'>
+            <span>[[matchTitle]]</span>
           </div>
           <div class='info'>
             <span>[[matchDescription]]</span>
           </div>
-        </div>
-        <div class="my-card-item my-card-location">
+          <span class="flex"></span>
+          <div class='info'>
+            Hosted by: <span id='adminName'>[[matchAdmin.name]]</span>
+          </div>
         </div>
         <div id='footer' class='my-card-item my-card-footer'>
+          <span class='badge'>[[matchFormat]]</span>
           <span class="flex"></span>
           <div class='card-people'>
             <span>[[matchCurrent]]</span> /
@@ -133,28 +49,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </paper-material>
     </template>
 
-  <script>
-    (function() {
-      'use strict';
-
-      Polymer({
-        is: 'contestify-card',
-        properties: {
-          matchId: String,
-          matchTitle: String,
-          matchDescription: String,
-          matchFormat: String,
-          matchGame: String,
-          matchTotal: Number,
-          matchCurrent: Number
-        },
-        ready: function () {
-        },
-        onCardTaped: function () {
-          page('/contest/' + this.matchId);
-        }
-      });
-    })();
+  <script src='main.js'>
   </script>
 
 </dom-module>

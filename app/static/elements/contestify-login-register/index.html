@@ -1,6 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
@@ -9,9 +10,81 @@
 <link rel="import" href="style.html">
 
 <dom-module id="contestify-login-register">
-  <template>
   <style include='contestify-login-register-style'></style>
-  <paper-card elevation=5 hidden$='{{isHidden}}'>
+  <template>
+
+  <!-- currentUser Ajax -->
+  <iron-ajax
+    id='ajaxCurrentUser'
+    auto
+    method='GET'
+    url="/currentUser"
+    handle-as="json"
+    on-response=onCurrentUserReceived
+    debounce-duration="300">
+  </iron-ajax>
+
+  <!-- user detail Ajax -->
+  <iron-ajax
+    id='ajaxUserDetail'
+    method='GET'
+    url="/user"
+    handle-as="json"
+    on-response=onUserDetailReceived
+    debounce-duration="300">
+  </iron-ajax>
+
+  <!-- register Ajax -->
+  <iron-ajax
+    id='ajaxRegister'
+    body='{{parse(formInfo)}}'
+    method='POST'
+    url="/register"
+    handle-as="json"
+    content-type="application/json"
+    on-response=onRegisterReceived
+    debounce-duration="300">
+  </iron-ajax>
+
+  <!-- login Ajax -->
+  <iron-ajax
+    id='ajaxLogin'
+    body='{{parse(formInfo)}}'
+    method='POST'
+    url="/login"
+    handle-as="json"
+    content-type="application/json"
+    on-response=onLoginReceived
+    debounce-duration="300">
+  </iron-ajax>
+
+  <!-- logout Ajax -->
+  <iron-ajax
+    id='ajaxLogout'
+    method='POST'
+    url="/logout"
+    handle-as="json"
+    on-response=onLogoutReceived
+    debounce-duration="300">
+  </iron-ajax>
+
+  <paper-button hidden$="{{!isLoginRegister}}">Hi~
+    <span>{{currentUser.firstName}}<span>
+  </paper-button>
+  <paper-button id='btnLogout' raised hidden$="{{!isLoginRegister}}" on-tap=logoutCurrentUser>Logout
+  </paper-button>
+  <paper-button
+    id='btn-login-register'
+    hidden$="{{isLoginRegister}}"
+    on-tap=toggleLoginRegister>Login / Register
+  </paper-button>
+
+  <paper-dialog
+    auto-fit-on-attach
+    entry-animation="scale-up-animation"
+    exit-animation="fade-out-animation"
+    id='formLogin'
+    elevation=5>
     <div class="card-content">
       <paper-tabs id='tabSection' selected='{{sectionIndex}}'>
         <paper-tab>Register</paper-tab>
@@ -61,7 +134,7 @@
       <span class="flex"></span>
       <paper-button id='btnSubmit' on-tap=submit>Submit</paper-button>
     </div>
-  </paper-card>
+  </paper-dialog>
   </template>
   <script src='main.js'></script>
 </dom-module>

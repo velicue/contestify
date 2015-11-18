@@ -34,7 +34,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     page('/contest/:id', scrollToTop, function(data) {
       app.route = 'contest';
       app.set('meta.id', data.params.id);
-      app.set('currentContestInfo.id', data.params.id);
       app.getCurrentContestInfo();
     });
 

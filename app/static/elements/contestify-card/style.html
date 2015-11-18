@@ -1,0 +1,111 @@
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<dom-module id='contestify-card-style'><template>
+<style is="custom-style">
+:host {
+  display: block;
+  margin: 0 20px;
+}
+
+/* paper-material */
+:host ::content paper-material {
+  border-radius: 2px;
+  width: 280px;
+  height: 320px;
+  padding: 0;
+  margin: 16px auto;
+  background: white;
+  transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1), width 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+:host ::content .avatar {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--accent-color);
+}
+:host ::content paper-material:hover {
+  @apply(--shadow-elevation-6dp);
+  cursor: pointer;
+}
+
+/* my card item */
+:host ::content .my-card-item {
+  padding: 16px;
+}
+
+@media (max-width: 600px) {
+  :host ::content .my-card-item {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
+@media (min-width: 601px) {
+  :host ::content .my-card-item{
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+/* my card header*/
+:host ::content .my-card-header {
+  /*background-image: url('../../images/backgammon.jpeg'), -webkit-linear-gradient(top, rgba(255,255,255,0.5), rgba(255,255,255,0.5));*/
+  height: 40px;
+  @apply(--layout-horizontal);
+  line-height: 40px;
+}
+
+/* my card content*/
+:host ::content .my-card-content {
+  margin: 0;
+  height: 160px;
+  border-top: solid 1px var(--divider-color);
+  @apply(--layout-vertical);
+}
+
+/* my card footer*/
+:host ::content .my-card-footer {
+  position: relative;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -ms-flex-direction: row;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  border-top: solid 1px var(--divider-color);
+}
+
+/* badge */
+:host ::content .badge {
+  border-radius: 10px;
+}
+
+/* icon button */
+:host ::content paper-icon-button {
+  color: var(--accent-color);
+}
+
+/* detail button */
+:host ::content #showDetail {
+  position: relative;
+  top: 4px;
+  left: 20px;
+}
+
+:host ::content #title {
+  margin: 0;
+  font-weight: lighter;
+  padding-left: 20px;
+  font-size: 18px;
+}
+
+:host ::content .subtitle {
+  font-size: 24px;
+  font-weight: bolder;
+  color: var(--secondary-text-color);
+}
+</style>
+</dom-module>

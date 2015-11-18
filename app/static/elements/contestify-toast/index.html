@@ -1,0 +1,32 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
+
+<dom-module id="contestify-toast">
+  <template>
+    <style>
+      :host ::content #toast .toast-hide-button {
+        color: #eeff41;
+        margin: 10px;
+      }
+    </style>
+    <paper-toast id="toast">
+      <span class="toast-hide-button" role="button" tabindex="0" on-tap=hideToast>Ok</span>
+    </paper-toast>
+  </template>
+  <script>
+  (function() {
+    Polymer({
+      is: 'contestify-toast',
+      ready: function () {
+        document.addEventListener('contestify-toast-msg', function (e) {
+          this.$.toast.text = e.detail.text;
+          this.$.toast.show();
+        }.bind(this));
+      },
+      hideToast: function () {
+        this.$.toast.hide();
+      }
+    });
+  })();
+  </script>
+</dom-module>

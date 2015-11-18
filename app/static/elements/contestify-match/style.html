@@ -1,0 +1,45 @@
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<dom-module id='contestify-match-style'><template>
+<style is="custom-style">
+  :host ::content paper-card{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  :host ::content paper-card[status=winner] {
+    width: 45%;
+  }
+  :host ::content paper-card[status=loser] {
+    width: 45%;
+  }
+  :host ::content #editHolder {
+    width: 10%;
+    @apply(--layout-vertical);
+    @apply(--layout-around-justified);
+  }
+  :host ::content paper-fab {
+    margin: 0 auto;
+  }
+  :host ::content .btnEdit {
+    color: var(--accent-color);
+    padding-right: 10px;
+    cursor: pointer;
+  }
+  :host ::content .match-result-left {
+    margin-right: 3%;
+  }
+  :host ::content .match-result-right {
+    margin-left: 3%;
+  }
+  :host ::content .match-item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    @apply(--layout-horizontal);
+  }
+  :host ::content .match-item:first-child {
+    margin-top: 0;
+  }
+  :host ::content .match-item:last-child {
+    margin-bottom: 0;
+  }
+</style>
+</dom-module>

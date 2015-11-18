@@ -2,13 +2,13 @@
   Polymer({
     is: 'contestify-new-contest',
     properties: {
-      isHidden: {
-        type: Boolean,
-        notify: true
-      },
       newContest: {
         type: Object,
         notify: true
+      },
+      isHidden: {
+        type: Boolean,
+        notify: true,
       }
     },
     listeners: {
@@ -18,21 +18,26 @@
     ready: function () {
     },
     formSubmit: function () {
-      this.$.formNewContest.submit();
+      if (this.$.formNewContest.validate()) {
+        this.$.formNewContest.submit();
+      }
     },
-    formHide: function () {
-      this.set('isHidden', true);
+    toggleForm: function () {
+      this.$.formNew.toggle();
     },
     formResponse: function (res) {
       var response = res.detail.response;
       if (response.status === 'Failed') {
-        return console.log(response.msg);
+        return this.showFailMsg(response.msg);
       }
-      this.formHide();
+      this.$.formNew.close();
       this.set('newContest', response.result);
     },
     formError: function () {
-      console.log('Add Contest Failed.');
+        return this.showFailMsg('Create new contest error!');
+    },
+    showFailMsg: function (msg) {
+      this.fire('contestify-toast-msg', {text: msg});
     }
   });
 })();

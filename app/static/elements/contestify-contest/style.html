@@ -18,45 +18,20 @@
     overflow: hidden;
     background: #ccc;
   }
-  :host ::content paper-icon-item:nth-child(4n) .avatar,
-  :host ::content .match-item:nth-child(4n+3) .avatar {
+  :host ::content contestify-match:nth-child(4n+3) .avatar {
     background-color: #4fc3f7;
   }
-  :host ::content paper-icon-item:nth-child(4n+1) .avatar,
-  :host ::content .match-item:nth-child(4n) .avatar {
+  :host ::content contestify-match:nth-child(4n) .avatar {
     background-color: #E57373;
   }
-  :host ::content paper-icon-item:nth-child(4n+2) .avatar,
-  :host ::content .match-item:nth-child(4n+2) .avatar {
+  :host ::content contestify-match:nth-child(4n+2) .avatar {
     background-color: #FFD54F;
   }
-  :host ::content paper-icon-item:nth-child(4n+3) .avatar,
-  :host ::content .match-item:nth-child(4n+1) .avatar {
+  :host ::content contestify-match:nth-child(4n+1) .avatar {
     background-color: #81C784;
   }
-  :host ::content paper-card[status=winner] {
-    width: 56%;
-  }
-  :host ::content paper-card[status=loser] {
-    width: 36%;
-  }
-  :host ::content .match-result-left {
-    margin-right: 3%;
-  }
-  :host ::content .match-result-right {
-    margin-left: 3%;
-  }
-  :host ::content .match-item {
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  :host ::content .match-item:first-child {
-    margin-top: 0;
-  }
-  :host ::content .match-item:last-child {
-    margin-bottom: 0;
-  }
-  :host ::content #cardPeople {
+
+  :host ::content #sectionGraph {
     float: left;
     display: block;
     margin-right: 20px;
@@ -67,6 +42,12 @@
     float: left;
     margin-left: 20px;
     width: calc(100% - 400px);
+  }
+  :host ::content #fabJoin {
+    @apply(--shadow-elevation-6dp);
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
   }
 </style>
 </template></dom-module>
