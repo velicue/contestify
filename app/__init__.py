@@ -63,7 +63,6 @@ def current_user_get():
 @app.route('/login', methods=['POST'])
 def login_post():
 	content = flask.request.json
-	print content
 	t = userauth.login(content)
 	if t:
 		return response('OK', 'Login Success.', None)
