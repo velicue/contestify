@@ -5,6 +5,7 @@
 # $Author: Matt Zhang <mattzhang9[at]gmail[dot]com>
 
 from config import *
+from model.user import User
 
 
 def send_email(recipient, subject, body):
@@ -26,9 +27,19 @@ def send_email(recipient, subject, body):
         server.login(gmail_user, gmail_pwd)
         server.sendmail(FROM, TO, message)
         server.close()
-        print 'successfully sent the mail'
     except:
-        print "failed to send mail"
+        print "Failed to send email"
 
-if __name__ == '__main__':
-    send_email("mattzhang9@gmail.com", "Test", "testing")
+def send_digest():
+    users = User.objects()
+    body = """
+        Long time no see! Come and see what's new contests on contestify!
+    """
+    count = 0
+    for user in users:
+        send_email(user.email, "Come and Read the latest Info!", body)
+        count = count + 1
+        if count > 0:
+            break
+
+    
