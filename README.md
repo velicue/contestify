@@ -1,5 +1,8 @@
 #  Contestify
 
+### Status
+[![Build Status](https://travis-ci.org/velicue/contestify.svg)](https://travis-ci.org/velicue/contestify.svg)
+
 ## Dependency
 
   + Flask == 0.10.1
@@ -17,4 +20,5 @@ Use pip to install all of the requirements.
 To start the website:
 
 	./app.py
+
 
