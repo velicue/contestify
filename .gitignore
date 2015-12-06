@@ -1,0 +1,7 @@
+*.swp
+*.swo
+.DS_Store
+*.pyc
+.download_cache
+*.egg-info
+.env

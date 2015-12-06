@@ -1,3 +1,3 @@
-from app import app
-app.debug = True
+from app import app, service
+service.emailService()
 app.run()
