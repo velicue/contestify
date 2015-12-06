@@ -11,7 +11,7 @@ import time
 import sched
 import os
 import threading
-def perform(name):
+def perform():
     while True:
         time.sleep(7200)
         send_digest()
