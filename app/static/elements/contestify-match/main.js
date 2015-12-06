@@ -30,8 +30,8 @@
       if ('OK' !== response.status) {
         return this.showFailMsg(response.msg);
       }
-      response.result.score1 = -1 === response.result.score1 ? 'N/A' : response.result.score1;
-      response.result.score2 = -1 === response.result.score2 ? 'N/A' : response.result.score2;
+      response.result.score1 = -1 === response.result.score1 ? '' : response.result.score1;
+      response.result.score2 = -1 === response.result.score2 ? '' : response.result.score2;
       this.set('matchDetail', response.result);
       this.$.ajaxUserDetail.params = {'id': this.matchDetail.player1Id.$oid};
       this.$.ajaxUserDetail.generateRequest();
@@ -45,9 +45,11 @@
       }
       if (response.result._id.$oid === this.matchDetail.player1Id.$oid) {
         this.set('matchDetail.player1Id.name', response.result.firstName + ' ' + response.result.lastName);
+        this.set('matchDetail.player1Id.initial', response.result.firstName[0].toUpperCase() + response.result.lastName[0].toUpperCase());
       }
       else if (response.result._id.$oid === this.matchDetail.player2Id.$oid) {
         this.set('matchDetail.player2Id.name', response.result.firstName + ' ' + response.result.lastName);
+        this.set('matchDetail.player2Id.initial', response.result.firstName[0].toUpperCase() + response.result.lastName[0].toUpperCase());
       }
     },
     showFailMsg: function (msg) {

@@ -7,8 +7,8 @@
 <link rel="import" href="style.html">
 
 <dom-module id='contestify-graph'>
-<style include='contestify-graph-style'></style>
 <template>
+  <style include='contestify-graph-style'></style>
 
   <!-- user detail Ajax -->
   <iron-ajax
@@ -18,17 +18,15 @@
     handle-as="json"
     on-response=onUserDetailReceived>
   </iron-ajax>
-    <paper-icon-item>
-      <div class="avatar" item-icon></div>
-      <paper-item-body two-line>
-        <div>{{graphDetail.name}}</div>
-        <div secondary>
-          Win: <span>[[graphDetail.win]]</span>,
-          Lose: <span>[[graphDetail.lose]]</span>, Draw:<span>[[graphDetail.draw]]</span>
-        </div>
-      </paper-item-body>
-      <div class='rank'>[[graphDetail.totalPoints]]</div>
-    </paper-icon-item>
+  <div id='container'>
+    <div class='profile'>
+      <div class="avatar">{{graphInitial}}</div>
+      <div class='name'>{{graphDetail.name}}</div>
+    </div>
+    <div class='rank'>[[graphDetail.totalPoints]]</div>
+    <div class='win'>[[graphDetail.win]]</div>
+    <div class='lose'>[[graphDetail.lose]]</div>
+    <div class='draw'>[[graphDetail.draw]]</div>
   </div>
 </template>
 <script src='main.js'></script>

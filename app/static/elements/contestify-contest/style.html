@@ -16,9 +16,13 @@
     height: 40px;
     border-radius: 50%;
     overflow: hidden;
-    background: #ccc;
+    /*background: var(--accent-color);*/
+    background: #BBB;
   }
-  :host ::content contestify-match:nth-child(4n+3) .avatar {
+  :host ::content contestify-graph:nth-child(-n+4) .avatar {
+    background: var(--accent-color);
+  }
+  /*:host ::content contestify-match:nth-child(4n+3) .avatar {
     background-color: #4fc3f7;
   }
   :host ::content contestify-match:nth-child(4n) .avatar {
@@ -29,19 +33,35 @@
   }
   :host ::content contestify-match:nth-child(4n+1) .avatar {
     background-color: #81C784;
-  }
+  }*/
 
   :host ::content #sectionGraph {
-    float: left;
     display: block;
-    margin-right: 20px;
-    width: 360px;
   }
   :host ::content #sectionMatches {
     display: block;
-    float: left;
-    margin-left: 20px;
-    width: calc(100% - 400px);
+  }
+  :host ::content #tableHeader {
+    width: 60%;
+    @apply(--layout-horizontal);
+    color: #CCC;
+    font-weight: 100;
+    font-size: 28px;
+    @apply(--layout-around-justified);
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  :host ::content .labelName {
+    width: 240px;
+  }
+  :host ::content .labelScore {
+    width: 100px;
+  }
+  :host ::content .labelWin,
+  :host ::content .labelLose,
+  :host ::content .labelDraw {
+    width: 100px;
   }
   :host ::content #fabJoin {
     @apply(--shadow-elevation-6dp);

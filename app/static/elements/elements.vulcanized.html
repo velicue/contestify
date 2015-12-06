@@ -18278,6 +18278,11 @@ module.exports = Array.isArray || function (arr) {
   border-radius: 50%;
   overflow: hidden;
   background: var(--accent-color);
+  line-height: 40px;
+  font-size: 24px;
+  font-weight: lighter;
+  text-align: center;
+  color: white;
 }
 :host ::content paper-material:hover {
   @apply(--shadow-elevation-6dp);
@@ -18371,7 +18376,7 @@ module.exports = Array.isArray || function (arr) {
     </iron-ajax>
       <paper-material id="cardContainer" elevation="1" on-tap="onCardTaped">
         <div id="header" class="my-card-item my-card-header">
-          <div class="avatar" item-icon=""></div>
+          <div class="avatar" item-icon="">[[matchAdminInitial]]</div>
           <span id="title">[[matchGame]]</span>
         </div>
         <div class="my-card-item my-card-content">
@@ -18412,6 +18417,7 @@ module.exports = Array.isArray || function (arr) {
       matchTotal: Number,
       matchCurrent: Number,
       matchAdmin: Object,
+      matchAdminInitial: String,
     },
     ready: function () {
       this.$.ajaxUserDetail.url = '/user?id=' + this.matchAdminId;
@@ -18427,6 +18433,7 @@ module.exports = Array.isArray || function (arr) {
       }
       this.set('matchAdmin', response.result);
       this.set('matchAdmin.name', response.result.firstName + ' ' + response.result.lastName);
+      this.set('matchAdminInitial', response.result.firstName[0].toUpperCase() + response.result.lastName[0].toUpperCase());
     },
     showFailMsg: function (msg) {
       this.fire('contestify-toast-msg', {text: msg});
@@ -21229,17 +21236,55 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   :host ::content paper-card{
     margin-top: 10px;
     margin-bottom: 10px;
+    width: 60%;
+    @apply(--layout-horizontal);
+    @apply(--layout-horizontal);
+    line-height: 75px;
+    @apply(--layout-center-justified);
+    text-align: center;
+    height: 70px;
   }
-  :host ::content paper-card[status=winner] {
-    width: 45%;
+
+  :host ::content .avatar {
+    line-height: 40px;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    font-weight: 100;
+    margin-left: 20px;
+    margin-right: 20px;
   }
-  :host ::content paper-card[status=loser] {
-    width: 45%;
+  :host ::content .profile {
+    width: 240px;
+    height: 70px;
+    @apply(--layout-horizontal);
+    @apply(--layout-center);
   }
+
+  :host ::content .profile.left {
+    @apply(--layout-start-justified);
+  }
+
+  :host ::content .profile.right {
+    @apply(--layout-end-justified);
+  }
+
   :host ::content #editHolder {
     width: 10%;
     @apply(--layout-vertical);
     @apply(--layout-around-justified);
+  }
+  :host ::content #editHolder::before {
+    position: absolute;
+    content: '';
+    width: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    height: 0px;
+    top: 35px;
+    border-top: 2px solid var(--secondary-text-color);
   }
   :host ::content paper-fab {
     margin: 0 auto;
@@ -21249,22 +21294,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     padding-right: 10px;
     cursor: pointer;
   }
-  :host ::content .match-result-left {
-    margin-right: 3%;
+
+
+  :host::content .rank {
+    width: 240px;
   }
-  :host ::content .match-result-right {
-    margin-left: 3%;
+
+  :host::content .rank.left {
+    @apply(--layout-end);
+    text-align: end;
   }
+
+  :host::content .rank.right {
+    @apply(--layout-start);
+    text-align: start;
+  }
+
   :host ::content .match-item {
     margin-top: 10px;
     margin-bottom: 10px;
     @apply(--layout-horizontal);
-  }
-  :host ::content .match-item:first-child {
-    margin-top: 0;
-  }
-  :host ::content .match-item:last-child {
-    margin-bottom: 0;
+    @apply(--layout-around-justified);
   }
 </style>
 
@@ -21279,28 +21329,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <iron-ajax id="ajaxUserDetail" method="GET" url="/user" handle-as="json" on-response="onUserDetailReceived">
   </iron-ajax>
   <div class="match-item">
-    <paper-card status="winner" class="match-result-left">
-      <paper-icon-item>
-        <div class="avatar" item-icon=""></div>
-        <paper-item-body two-line="">
-          <div>{{matchDetail.player1Id.name}}</div>
-        </paper-item-body>
-        <div class="rank">{{matchDetail.score1}}</div>
-      </paper-icon-item>
-    </paper-card>
+    <paper-card>
+    <div class="profile left">
+      <div class="avatar">{{matchDetail.player1Id.initial}}</div>
+      <div class="name">{{matchDetail.player1Id.name}}</div>
+    </div>
+    <div class="rank left">{{matchDetail.score1}}</div>
     <div id="editHolder">
       <template is="dom-if" if="{{isAdmin}}">
-        <paper-fab mini="" class="fabEdit" id="winnerEdit" icon="create" on-tap="putScore"></paper-fab>
+        <paper-fab class="fabEdit" id="winnerEdit" icon="create" on-tap="putScore"></paper-fab>
       </template>
     </div>
-    <paper-card status="loser" class="match-result-right">
-      <paper-icon-item>
-        <div class="avatar" item-icon=""></div>
-        <paper-item-body two-line="">
-          <div>{{matchDetail.player2Id.name}}</div>
-        </paper-item-body>
-        <div class="rank">{{matchDetail.score2}}</div>
-      </paper-icon-item>
+    <div class="rank right">{{matchDetail.score2}}</div>
+    <div class="profile right">
+      <div class="name">{{matchDetail.player2Id.name}}</div>
+      <div class="avatar">{{matchDetail.player2Id.initial}}</div>
+    </div>
     </paper-card>
   </div>
 </template>
@@ -21336,8 +21380,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if ('OK' !== response.status) {
         return this.showFailMsg(response.msg);
       }
-      response.result.score1 = -1 === response.result.score1 ? 'N/A' : response.result.score1;
-      response.result.score2 = -1 === response.result.score2 ? 'N/A' : response.result.score2;
+      response.result.score1 = -1 === response.result.score1 ? '' : response.result.score1;
+      response.result.score2 = -1 === response.result.score2 ? '' : response.result.score2;
       this.set('matchDetail', response.result);
       this.$.ajaxUserDetail.params = {'id': this.matchDetail.player1Id.$oid};
       this.$.ajaxUserDetail.generateRequest();
@@ -21351,9 +21395,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       if (response.result._id.$oid === this.matchDetail.player1Id.$oid) {
         this.set('matchDetail.player1Id.name', response.result.firstName + ' ' + response.result.lastName);
+        this.set('matchDetail.player1Id.initial', response.result.firstName[0].toUpperCase() + response.result.lastName[0].toUpperCase());
       }
       else if (response.result._id.$oid === this.matchDetail.player2Id.$oid) {
         this.set('matchDetail.player2Id.name', response.result.firstName + ' ' + response.result.lastName);
+        this.set('matchDetail.player2Id.initial', response.result.firstName[0].toUpperCase() + response.result.lastName[0].toUpperCase());
       }
     },
     showFailMsg: function (msg) {
@@ -21365,27 +21411,62 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </dom-module>
 <dom-module id="contestify-graph-style" assetpath="contestify-graph/"><template>
 <style is="custom-style">
+  :host ::content .avatar {
+    line-height: 40px;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    font-weight: 100;
+  }
+  :host ::content #container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    @apply(--layout-horizontal);
+    line-height: 40px;
+    @apply(--layout-around-justified);
+    text-align: center;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  :host ::content .profile {
+    width: 240px;
+    @apply(--layout-horizontal);
+    @apply(--layout-start-justified);
+  }
+  :host ::content .name {
+    font-size: 18px;
+    padding-left: 20px;
+  }
+  :host ::content .rank {
+    width: 100px;
+  }
+  :host ::content .win,
+  :host ::content .lose,
+  :host ::content .draw {
+    width: 100px;
+    font-size: 20px;
+    color: black;
+  }
 </style>
-
-</template></dom-module><dom-module id="contestify-graph" assetpath="contestify-graph/">
-<style include="contestify-graph-style"></style>
+</template></dom-module>
+<dom-module id="contestify-graph" assetpath="contestify-graph/">
 <template>
+  <style include="contestify-graph-style"></style>
 
   
   <iron-ajax id="ajaxUserDetail" method="GET" url="/user" handle-as="json" on-response="onUserDetailReceived">
   </iron-ajax>
-    <paper-icon-item>
-      <div class="avatar" item-icon=""></div>
-      <paper-item-body two-line="">
-        <div>{{graphDetail.name}}</div>
-        <div secondary="">
-          Win: <span>[[graphDetail.win]]</span>,
-          Lose: <span>[[graphDetail.lose]]</span>, Draw:<span>[[graphDetail.draw]]</span>
-        </div>
-      </paper-item-body>
-      <div class="rank">[[graphDetail.totalPoints]]</div>
-    </paper-icon-item>
-  
+  <div id="container">
+    <div class="profile">
+      <div class="avatar">{{graphInitial}}</div>
+      <div class="name">{{graphDetail.name}}</div>
+    </div>
+    <div class="rank">[[graphDetail.totalPoints]]</div>
+    <div class="win">[[graphDetail.win]]</div>
+    <div class="lose">[[graphDetail.lose]]</div>
+    <div class="draw">[[graphDetail.draw]]</div>
+  </div>
 </template>
 <script>(function () {
   Polymer({
@@ -21395,7 +21476,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         type: Object,
         value: null,
         observer: 'refresh'
-      }
+      },
+      graphInitial: String
     },
     refresh: function () {
       this.$.ajaxUserDetail.params = {'id': this.graphDetail.playerId.$oid};
@@ -21406,7 +21488,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if ('OK' !== response.status) {
         return this.showFailMsg(response.msg);
       }
-      this.set('graphDetail.name', response.result.firstName + ' ' + response.result.lastName);
+      this.set('graphDetail.name', response.result.firstName.toUpperCase() + ' ' + response.result.lastName.toUpperCase());
+      this.set('graphInitial', response.result.firstName[0].toUpperCase() + response.result.lastName[0].toUpperCase());
     },
     showFailMsg: function (msg) {
       this.fire('contestify-toast-msg', {text: msg});
@@ -21432,9 +21515,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     height: 40px;
     border-radius: 50%;
     overflow: hidden;
-    background: #ccc;
+    /*background: var(--accent-color);*/
+    background: #BBB;
   }
-  :host ::content contestify-match:nth-child(4n+3) .avatar {
+  :host ::content contestify-graph:nth-child(-n+4) .avatar {
+    background: var(--accent-color);
+  }
+  /*:host ::content contestify-match:nth-child(4n+3) .avatar {
     background-color: #4fc3f7;
   }
   :host ::content contestify-match:nth-child(4n) .avatar {
@@ -21445,19 +21532,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   }
   :host ::content contestify-match:nth-child(4n+1) .avatar {
     background-color: #81C784;
-  }
+  }*/
 
   :host ::content #sectionGraph {
-    float: left;
     display: block;
-    margin-right: 20px;
-    width: 360px;
   }
   :host ::content #sectionMatches {
     display: block;
-    float: left;
-    margin-left: 20px;
-    width: calc(100% - 400px);
+  }
+  :host ::content #tableHeader {
+    width: 60%;
+    @apply(--layout-horizontal);
+    color: #CCC;
+    font-weight: 100;
+    font-size: 28px;
+    @apply(--layout-around-justified);
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  :host ::content .labelName {
+    width: 240px;
+  }
+  :host ::content .labelScore {
+    width: 100px;
+  }
+  :host ::content .labelWin,
+  :host ::content .labelLose,
+  :host ::content .labelDraw {
+    width: 100px;
   }
   :host ::content #fabJoin {
     @apply(--shadow-elevation-6dp);
@@ -21481,6 +21584,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </iron-ajax>
     <style include="contestify-contest-style"></style>
     <section id="sectionGraph">
+        <div id="tableHeader">
+          <div class="labelName"><span>Name</span></div>
+          <div class="labelScore">Score</div>
+          <div class="labelWin">Win</div>
+          <div class="labelLose">Lose</div>
+          <div class="labelDraw">Draw</div>
+        </div>
         <template is="dom-repeat" items="{{graph}}">
           <contestify-graph graph-detail="[[item]]"></contestify-graph>
         </template>
@@ -21917,7 +22027,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       background-image: url("../images/toolbar_bg.jpg");
     };
     --paper-scroll-header-panel-condensed-header: {
-      background-color: var(--default-primary-color);
+      background-color: #444;
     };
   }
 
