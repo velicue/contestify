@@ -22,9 +22,7 @@ def _get_one(cls, *args, **kwargs):
                 "    {}\n" +
                 "    {}\n").format(cls.__name__, args, kwargs))
         return objs[0]
-    except mongoengine.errors.ValidationError:
-        return None
-    except RuntimeError:
+    except:
         return None
 
 

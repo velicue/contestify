@@ -36,9 +36,13 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login_get"
 
+from model.operationData import *
+
+
+
 @app.route('/')
 def index():
-	return app.send_static_file('index.html')
+    return app.send_static_file('index.html')
 
 '''
 @app.route("/",methods=["GET"])
@@ -184,9 +188,10 @@ def player_list_put(contest_id):
 
 @app.route('/match/<match_id>', methods=['PUT'])
 def upload_match_result(match_id):
-	content = flask.request.json
-	contestmanage.upload_match_result(match_id = match_id, contest_id = content["contestId"], score1 = content["score1"], score2 = content["score2"])
-	return response('OK', '', None)
+    OperationData.increaseContests()
+    content = flask.request.json
+    contestmanage.upload_match_result(match_id = match_id, contest_id = content["contestId"], score1 = content["score1"], score2 = content["score2"])
+    return response('OK', '', None)
 
 
 #static

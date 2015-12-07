@@ -19,11 +19,25 @@ class OperationData(db.Document):
     }
 
     @classmethod
-    def increaseContests():
-       date = date.today()
-       today_doc = OperationData.get_one({'date':{'$gte':date-timedelta(day=1)}})
-       if today_doc is None:
-           op = OperationData(date=date, contest=0, views=0)
+    def increaseContests(self):
+       today = date.today()
+       today_doc = OperationData.objects(date__gte=today-timedelta(days=1))
+       if len(today_doc) == 0:
+           doc = OperationData(date=today, contest=0, views=0)
        else:
-           op['contest'] = op['contest'] + 1
-       op.save()
+           doc = today_doc[0]
+       doc.contest += 1
+       doc.save()
+    
+    @classmethod
+    def getContests(self,days):
+       today = date.today()
+       data = OperationData.objects(date__gte=today-timedelta(days=days))
+       if data is None:
+           return 0
+       else:
+           count = 0
+           for i in data:
+               count += i.contest
+           return count
+

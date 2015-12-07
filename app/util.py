@@ -6,7 +6,8 @@
 
 from config import *
 from model.user import User
-
+from app import db
+from model.operationData import *
 
 def send_email(recipient, subject, body):
     import smtplib
@@ -32,12 +33,14 @@ def send_email(recipient, subject, body):
 
 def send_digest():
     users = User.objects()
+    contests = OperationData.getContests(1) 
     body = """
-        Long time no see! Come and see what's new contests on contestify!
-    """
+        We had %d contests yesterday! Come and see what's new contests on contestify!
+    """ % contests
     count = 0
     for user in users:
         send_email(user.email, "Come and Read the latest Info!", body)
+        print 'sent email to %s with body %s' % (user.email, body)
         count = count + 1
         if count > 0:
             break

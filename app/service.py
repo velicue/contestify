@@ -13,6 +13,7 @@ import os
 import threading
 def perform():
     while True:
+        send_digest()
         time.sleep(7200)
 
 def emailService():
