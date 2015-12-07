@@ -14,7 +14,6 @@ import threading
 def perform():
     while True:
         time.sleep(7200)
-        send_digest()
 
 def emailService():
     t = threading.Thread(target=perform)

@@ -1,3 +1,8 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+# $File: usermanage.py
+# $Date: 2015-10-01 9:53
+# $Author: Matt Zhang <mattzhang9[at]gmail[dot]com>
 from model.user import User
 
 def get_user_list():

@@ -1,6 +1,11 @@
 from model.user import User
 from mongoengine.errors import NotUniqueError
 from flask.ext.login import *
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+# $File: userauth.py
+# $Date: 2015-11-08 9:19
+# $Author: Matt Zhang <mattzhang9[at]gmail[dot]com>
 from flask.ext.login import login_user
 from app import login_manager
 

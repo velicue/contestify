@@ -1,3 +1,8 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+# $File: contestmanage.py
+# $Date: 2015-11-06 14:42
+# $Author: Matt Zhang <mattzhang9[at]gmail[dot]com>
 from model.contest import Contest
 from model.playerlist import PlayerList
 from model.match import Match, MatchList
