@@ -61,6 +61,13 @@
     </iron-ajax>
     <style include='contestify-contest-style'></style>
     <section id='sectionGraph'>
+        <div id="tableHeader">
+          <div class='labelName'><span>Name</span></div>
+          <div class='labelScore'>Score</div>
+          <div class='labelWin'>Win</div>
+          <div class='labelLose'>Lose</div>
+          <div class='labelDraw'>Draw</div>
+        </div>
         <template is='dom-repeat' items='{{graph}}'>
           <contestify-graph
             graph-detail=[[item]]

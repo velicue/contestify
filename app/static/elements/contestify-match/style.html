@@ -4,17 +4,55 @@
   :host ::content paper-card{
     margin-top: 10px;
     margin-bottom: 10px;
+    width: 60%;
+    @apply(--layout-horizontal);
+    @apply(--layout-horizontal);
+    line-height: 75px;
+    @apply(--layout-center-justified);
+    text-align: center;
+    height: 70px;
   }
-  :host ::content paper-card[status=winner] {
-    width: 45%;
+
+  :host ::content .avatar {
+    line-height: 40px;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    font-weight: 100;
+    margin-left: 20px;
+    margin-right: 20px;
   }
-  :host ::content paper-card[status=loser] {
-    width: 45%;
+  :host ::content .profile {
+    width: 240px;
+    height: 70px;
+    @apply(--layout-horizontal);
+    @apply(--layout-center);
   }
+
+  :host ::content .profile.left {
+    @apply(--layout-start-justified);
+  }
+
+  :host ::content .profile.right {
+    @apply(--layout-end-justified);
+  }
+
   :host ::content #editHolder {
     width: 10%;
     @apply(--layout-vertical);
     @apply(--layout-around-justified);
+  }
+  :host ::content #editHolder::before {
+    position: absolute;
+    content: '';
+    width: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    height: 0px;
+    top: 35px;
+    border-top: 2px solid var(--secondary-text-color);
   }
   :host ::content paper-fab {
     margin: 0 auto;
@@ -24,22 +62,27 @@
     padding-right: 10px;
     cursor: pointer;
   }
-  :host ::content .match-result-left {
-    margin-right: 3%;
+
+
+  :host::content .rank {
+    width: 240px;
   }
-  :host ::content .match-result-right {
-    margin-left: 3%;
+
+  :host::content .rank.left {
+    @apply(--layout-end);
+    text-align: end;
   }
+
+  :host::content .rank.right {
+    @apply(--layout-start);
+    text-align: start;
+  }
+
   :host ::content .match-item {
     margin-top: 10px;
     margin-bottom: 10px;
     @apply(--layout-horizontal);
-  }
-  :host ::content .match-item:first-child {
-    margin-top: 0;
-  }
-  :host ::content .match-item:last-child {
-    margin-bottom: 0;
+    @apply(--layout-around-justified);
   }
 </style>
 </dom-module>

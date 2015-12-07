@@ -20,11 +20,11 @@ app.config['MONGODB_SETTINGS'] = {
 }
 '''
 app.config['MONGODB_SETTINGS'] = {
-	'db': 'heroku_4n7dw5c8',
-	'host': 'ds045464.mongolab.com',
-	'port': 45464,
+	'db': 'heroku_xf9vmknz',
+	'host': 'ds041581.mongolab.com',
+	'port': 41581,
 	'username': 'velicue',
-	'password': 'KsMs13Mc'
+	'password': 'C0Ntestif1'
 }
 
 db = MongoEngine()

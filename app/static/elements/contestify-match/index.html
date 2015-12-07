@@ -28,28 +28,22 @@
     on-response=onUserDetailReceived>
   </iron-ajax>
   <div class='match-item'>
-    <paper-card status='winner' class='match-result-left'>
-      <paper-icon-item>
-        <div class="avatar" item-icon></div>
-        <paper-item-body two-line>
-          <div>{{matchDetail.player1Id.name}}</div>
-        </paper-item-body>
-        <div class='rank'>{{matchDetail.score1}}</div>
-      </paper-icon-item>
-    </paper-card>
+    <paper-card>
+    <div class='profile left'>
+      <div class='avatar'>{{matchDetail.player1Id.initial}}</div>
+      <div class='name'>{{matchDetail.player1Id.name}}</div>
+    </div>
+    <div class='rank left'>{{matchDetail.score1}}</div>
     <div id='editHolder'>
       <template is='dom-if' if='{{isAdmin}}'>
-        <paper-fab mini class='fabEdit' id='winnerEdit' icon='create' on-tap='putScore'></paper-fab>
+        <paper-fab class='fabEdit' id='winnerEdit' icon='create' on-tap='putScore'></paper-fab>
       </template>
     </div>
-    <paper-card status='loser' class='match-result-right'>
-      <paper-icon-item>
-        <div class="avatar" item-icon></div>
-        <paper-item-body two-line>
-          <div>{{matchDetail.player2Id.name}}</div>
-        </paper-item-body>
-        <div class='rank'>{{matchDetail.score2}}</div>
-      </paper-icon-item>
+    <div class='rank right'>{{matchDetail.score2}}</div>
+    <div class='profile right'>
+      <div class='name'>{{matchDetail.player2Id.name}}</div>
+      <div class='avatar'>{{matchDetail.player2Id.initial}}</div>
+    </div>
     </paper-card>
   </div>
 </template>

@@ -13,6 +13,7 @@
       matchTotal: Number,
       matchCurrent: Number,
       matchAdmin: Object,
+      matchAdminInitial: String,
     },
     ready: function () {
       this.$.ajaxUserDetail.url = '/user?id=' + this.matchAdminId;
@@ -28,6 +29,7 @@
       }
       this.set('matchAdmin', response.result);
       this.set('matchAdmin.name', response.result.firstName + ' ' + response.result.lastName);
+      this.set('matchAdminInitial', response.result.firstName[0].toUpperCase() + response.result.lastName[0].toUpperCase());
     },
     showFailMsg: function (msg) {
       this.fire('contestify-toast-msg', {text: msg});
