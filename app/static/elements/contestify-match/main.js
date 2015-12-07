@@ -43,7 +43,11 @@
       if ('OK' !== response.status) {
         return this.showFailMsg(response.msg);
       }
-      if (response.result._id.$oid === this.matchDetail.player1Id.$oid) {
+      if (response.result._id.$oid === '5664f1020207406600de67f0') {
+        // BYE
+        this.remove();
+      }
+      else if (response.result._id.$oid === this.matchDetail.player1Id.$oid) {
         this.set('matchDetail.player1Id.name', response.result.firstName + ' ' + response.result.lastName);
         this.set('matchDetail.player1Id.initial', response.result.firstName[0].toUpperCase() + response.result.lastName[0].toUpperCase());
       }

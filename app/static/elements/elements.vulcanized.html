@@ -21255,7 +21255,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     margin-right: 20px;
   }
   :host ::content .profile {
-    width: 240px;
+    width: 360px;
     height: 70px;
     @apply(--layout-horizontal);
     @apply(--layout-center);
@@ -21297,7 +21297,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
   :host::content .rank {
-    width: 240px;
+    width: 120px;
   }
 
   :host::content .rank.left {
@@ -21393,7 +21393,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if ('OK' !== response.status) {
         return this.showFailMsg(response.msg);
       }
-      if (response.result._id.$oid === this.matchDetail.player1Id.$oid) {
+      if (response.result._id.$oid === '5664f1020207406600de67f0') {
+        // BYE
+        this.remove();
+      }
+      else if (response.result._id.$oid === this.matchDetail.player1Id.$oid) {
         this.set('matchDetail.player1Id.name', response.result.firstName + ' ' + response.result.lastName);
         this.set('matchDetail.player1Id.initial', response.result.firstName[0].toUpperCase() + response.result.lastName[0].toUpperCase());
       }
@@ -22102,7 +22106,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <paper-scroll-header-panel main="" id="headerPanelMain" condenses="" flex="" keep-condensed-header="">
         
       <paper-toolbar id="mainToolbar" class="tall">
-        <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle=""></paper-icon-button>
+        
         <span class="flex"></span>
 
         
